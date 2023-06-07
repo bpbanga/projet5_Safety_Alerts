@@ -1,0 +1,31 @@
+package com.openclassroom.projet5;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.openclassroom.projet5.model.HelloWorld;
+import com.openclassroom.projet5.service.BuissnessService;
+
+
+@SpringBootApplication
+
+public class Projet5Application implements CommandLineRunner{
+	
+	@Autowired
+	private BuissnessService bs;
+
+    public static void main(String[] args) {
+        SpringApplication.run(Projet5Application.class, args);
+    }
+    @Override
+    @GetMapping
+    public void run(String...args) throws Exception {
+    	HelloWorld hw = bs.getHelloworld();
+    	System.out.println(hw);
+    }
+ 
+
+}

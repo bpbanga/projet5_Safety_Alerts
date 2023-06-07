@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>StatusControllerTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.Controller</a> &gt; <span class="el_source">StatusControllerTest.java</span></div><h1>StatusControllerTest.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.Controller;
+
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.openclassroom.projet5.controller.StatusController;
+import com.openclassroom.projet5.service.status.IChildAlertService;
+import com.openclassroom.projet5.service.status.ICommunityEmailService;
+import com.openclassroom.projet5.service.status.IFireAddressAlertService;
+import com.openclassroom.projet5.service.status.IFireStationCoverageService;
+import com.openclassroom.projet5.service.status.IFloodStationsService;
+import com.openclassroom.projet5.service.status.IPersonInfoService;
+import com.openclassroom.projet5.service.status.IPhoneAlertService;
+
+
+@WebMvcTest(controllers = StatusController.class)
+<span class="fc" id="L24">public class StatusControllerTest {</span>
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private IFireStationCoverageService FireStationCoverageService;
+
+    @MockBean
+    private IChildAlertService ChildAlertService;
+
+    @MockBean
+    private IPhoneAlertService PhoneAlertService;
+
+    @MockBean
+    private IFireAddressAlertService FireAddressAlertService;
+
+    @MockBean
+    private IFloodStationsService FloodStationsService;
+
+    @MockBean
+    private IPersonInfoService PersonInfoService;
+
+    @MockBean
+    private ICommunityEmailService CommunityEmailService;
+
+    @Test
+    public void shouldListFireStationCoverage() throws Exception {
+<span class="fc" id="L51">	mockMvc.perform(get(&quot;/firestation?stationNumber=4&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L52">    }</span>
+
+    @Test
+    public void shouldListChildAlert() throws Exception {
+<span class="fc" id="L56">	mockMvc.perform(get(&quot;/childAlert?address=1509 Culver St&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L57">    }</span>
+
+    @Test
+    public void shouldListPhoneAlert() throws Exception {
+<span class="fc" id="L61">	mockMvc.perform(get(&quot;/phoneAlert?firestation=1&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L62">    }</span>
+
+    @Test
+    public void shouldListFireAddressAlert() throws Exception {
+<span class="fc" id="L66">	mockMvc.perform(get(&quot;/fire?address=1509 Culver St&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L67">    }</span>
+
+    @Test
+    public void shouldListFloodStations() throws Exception {
+<span class="fc" id="L71">	mockMvc.perform(get(&quot;/flood/stations?stations=1,2,3&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L72">    }</span>
+
+    @Test
+    public void shouldListPersonInfo() throws Exception {
+<span class="fc" id="L76">	mockMvc.perform(get(&quot;/personInfo?firstName=John&amp;lastName=Boyd&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L77">    }</span>
+
+    @Test
+    public void shouldNotListPersonInfo() throws Exception {
+<span class="fc" id="L81">	mockMvc.perform(get(&quot;/personInfo?firstName=John&quot;)).andExpect(status().isBadRequest());</span>
+<span class="fc" id="L82">    }</span>
+
+    @Test
+    public void shouldListCommunityEmail() throws Exception {
+<span class="fc" id="L86">	mockMvc.perform(get(&quot;/communityEmail?city=Culver&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L87">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

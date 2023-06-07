@@ -1,0 +1,16 @@
+com\openclassroom\projet5\Service\status\PhoneAlertServiceTest.class
+com\openclassroom\projet5\Service\status\ChildAlertServiceTest.class
+com\openclassroom\projet5\Controller\MedicalRecordControllerTest.class
+com\openclassroom\projet5\Controller\PersonControllerTest.class
+com\openclassroom\projet5\Service\status\MedicalRecordServiceTest.class
+com\openclassroom\projet5\Controller\FireStationControllerTest.class
+com\openclassroom\projet5\Service\status\PersonServiceTest.class
+com\openclassroom\projet5\Service\status\FireStationServiceTest.class
+com\openclassroom\projet5\Service\status\FloodStationsServiceTest.class
+com\openclassroom\projet5\Projet5ApplicationTests.class
+com\openclassroom\projet5\Service\status\CommunityEmailServiceTest.class
+com\openclassroom\projet5\Controller\StatusControllerTest.class
+com\openclassroom\projet5\Utils\AgeHandlerTest.class
+com\openclassroom\projet5\Service\status\FireAddressAlertServiceTest.class
+com\openclassroom\projet5\Service\status\FireStationCoverageServiceTest.class
+com\openclassroom\projet5\Service\status\PersonInfoServiceTest.class

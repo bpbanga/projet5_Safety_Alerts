@@ -1,0 +1,5 @@
+package com.openclassroom.projet5.service.status;
+
+public class ChildAlertService {
+
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>MedicalRecordServiceTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.Service.status</a> &gt; <span class="el_source">MedicalRecordServiceTest.java</span></div><h1>MedicalRecordServiceTest.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.Service.status;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.openclassroom.projet5.model.MedicalRecords;
+import com.openclassroom.projet5.service.IMedicalRecordService;
+
+
+
+@SpringBootTest
+<span class="fc" id="L22">public class MedicalRecordServiceTest {</span>
+
+    @Autowired
+    private IMedicalRecordService medicalRecordService;
+<span class="fc" id="L26">    private static MedicalRecords medicalRecordToAdd = new MedicalRecords();;</span>
+
+    @BeforeAll
+    public static void setup() {
+
+<span class="fc" id="L31">	medicalRecordToAdd.setFirstName(&quot;Test&quot;);</span>
+<span class="fc" id="L32">	medicalRecordToAdd.setLastName(&quot;Test2&quot;);</span>
+<span class="fc" id="L33">	medicalRecordToAdd.setBirthdate(&quot;01/01/1990&quot;);</span>
+<span class="fc" id="L34">	medicalRecordToAdd.setMedications(Arrays.asList(&quot;aznol:350mg&quot;));</span>
+<span class="fc" id="L35">	medicalRecordToAdd.setAllergies(Arrays.asList(&quot;nillacilan&quot;));</span>
+<span class="fc" id="L36">    }</span>
+
+    @AfterEach
+    public void deleteAddedMedicalRecord() {
+<span class="fc" id="L40">	medicalRecordService.deleteMedicalRecord(medicalRecordToAdd);</span>
+<span class="fc" id="L41">    }</span>
+
+    @Test
+    public void shouldRetrieveNonEmptyPersonList() {
+<span class="fc" id="L45">	assertNotNull(medicalRecordService.getMedicalRecords());</span>
+<span class="fc" id="L46">    }</span>
+
+    @Test
+    public void shouldAddSuccessfullyPerson() {
+<span class="fc" id="L50">	medicalRecordService.postMedicalRecord(medicalRecordToAdd);</span>
+
+<span class="fc" id="L52">	List&lt;MedicalRecords&gt; listMedicalRecord = medicalRecordService.getMedicalRecords();</span>
+<span class="fc" id="L53">	assertEquals(listMedicalRecord.get(listMedicalRecord.size() - 1).getFirstName(),</span>
+<span class="fc" id="L54">		medicalRecordToAdd.getFirstName());</span>
+<span class="fc" id="L55">    }</span>
+
+    @Test
+    public void shouldEditSuccessfullyPerson() {
+<span class="fc" id="L59">	MedicalRecords medicalRecordToEdit = new MedicalRecords();</span>
+<span class="fc" id="L60">	medicalRecordToEdit.setFirstName(&quot;Test&quot;);</span>
+<span class="fc" id="L61">	medicalRecordToEdit.setLastName(&quot;Test2&quot;);</span>
+<span class="fc" id="L62">	medicalRecordToEdit.setAllergies(Arrays.asList(&quot;nillacilan0&quot;));</span>
+
+<span class="fc" id="L64">	medicalRecordService.postMedicalRecord(medicalRecordToAdd);</span>
+<span class="fc" id="L65">	medicalRecordService.putMedicalRecord(medicalRecordToEdit);</span>
+
+<span class="fc" id="L67">	List&lt;MedicalRecords&gt; listMedicalRecord = medicalRecordService.getMedicalRecords();</span>
+<span class="fc" id="L68">	assertEquals(listMedicalRecord.get(listMedicalRecord.size() - 1).getAllergies(),</span>
+<span class="fc" id="L69">		medicalRecordToEdit.getAllergies());</span>
+<span class="fc" id="L70">    }</span>
+
+    @Test
+    public void shouldDeleteSuccessfullyPerson() {
+<span class="fc" id="L74">	medicalRecordService.postMedicalRecord(medicalRecordToAdd);</span>
+<span class="fc" id="L75">	medicalRecordService.deleteMedicalRecord(medicalRecordToAdd);</span>
+
+<span class="fc" id="L77">	List&lt;MedicalRecords&gt; listMedicalRecord = medicalRecordService.getMedicalRecords();</span>
+<span class="fc" id="L78">	assertFalse(listMedicalRecord.get(listMedicalRecord.size() - 1).getLastName()</span>
+<span class="fc" id="L79">		.equals(medicalRecordToAdd.getLastName()));</span>
+<span class="fc" id="L80">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

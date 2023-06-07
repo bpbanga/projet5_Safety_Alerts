@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="ChildAlertServiceTest" project="projet5" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.openclassroom.projet5.Service.status.ChildAlertServiceTest" time="1.859" displayname="ChildAlertServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.openclassroom.projet5.Service.status.ChildAlertServiceTest]">
+    <testcase name="shouldRetrieveCorrectChildrenList" classname="com.openclassroom.projet5.Service.status.ChildAlertServiceTest" time="1.859" displayname="shouldRetrieveCorrectChildrenList()" uniqueid="[engine:junit-jupiter]/[class:com.openclassroom.projet5.Service.status.ChildAlertServiceTest]/[method:shouldRetrieveCorrectChildrenList()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FireAddressAlertService.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.service.status</a> &gt; <span class="el_source">FireAddressAlertService.java</span></div><h1>FireAddressAlertService.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.service.status;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.openclassroom.projet5.model.FireStations;
+import com.openclassroom.projet5.model.MedicalRecords;
+import com.openclassroom.projet5.model.Persons;
+import com.openclassroom.projet5.model.status.FireAddressAlert;
+import com.openclassroom.projet5.model.status.Resident;
+import com.openclassroom.projet5.repository.IDAOJson;
+import com.openclassroom.projet5.utils.AgeHandler;
+
+
+/*
+ * Format data from DTO into FireAddressAlert
+ */
+@Service
+<span class="fc" id="L25">public class FireAddressAlertService implements IFireAddressAlertService {</span>
+    @Autowired
+    private IDAOJson DTOjson;
+<span class="fc" id="L28">    private static final Logger logger = LogManager.getLogger(&quot;FireAddressAlertService&quot;);</span>
+
+    /*
+     * @Param String address
+     */
+    @Override
+    public FireAddressAlert getFireAddressAlert(String address) {
+<span class="fc" id="L35">	FireAddressAlert resultFireAddressAlert = new FireAddressAlert();</span>
+<span class="fc" id="L36">	List&lt;Resident&gt; resultResidents = new ArrayList&lt;Resident&gt;();</span>
+
+<span class="fc" id="L38">	List&lt;Persons&gt; persons = DTOjson.getJsonData().getPersons();</span>
+<span class="fc" id="L39">	List&lt;MedicalRecords&gt; medicalRecords = DTOjson.getJsonData().getMedicalrecords();</span>
+<span class="fc" id="L40">	List&lt;FireStations&gt; fireStations = DTOjson.getJsonData().getFirestations();</span>
+
+	// Retrieve stationNumber from fireStation
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">	for (FireStations firestation : fireStations) {</span>
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">	    if (firestation.getAddress().equals(address)) {</span>
+<span class="fc" id="L45">		resultFireAddressAlert.setStationNumber(Integer.parseInt(firestation.getStation()));</span>
+<span class="fc" id="L46">		break;</span>
+	    }
+	}
+
+	// Retrieve persons living in address
+<span class="fc" id="L51">	List&lt;Persons&gt; filteredPersonsInAddress = new ArrayList&lt;Persons&gt;();</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">	for (Persons person : persons) {</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">	    if (person.getAddress().equals(address)) {</span>
+<span class="fc" id="L54">		filteredPersonsInAddress.add(person);</span>
+	    }
+	}
+
+	// Retrieve age, medications and allergies from medicalRecords
+<span class="fc bfc" id="L59" title="All 2 branches covered.">	for (Persons filteredPerson : filteredPersonsInAddress) {</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">	    for (MedicalRecords medicalRecord : medicalRecords) {</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">		if (filteredPerson.getFirstName().equals(medicalRecord.getFirstName())</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">			&amp;&amp; filteredPerson.getLastName().equals(medicalRecord.getLastName())) {</span>
+<span class="fc" id="L63">		    Resident residentToAdd = new Resident(filteredPerson.getFirstName(), filteredPerson.getLastName(),</span>
+<span class="fc" id="L64">			    filteredPerson.getPhone(), AgeHandler.computeAge(medicalRecord.getBirthdate(), new Date()),</span>
+<span class="fc" id="L65">			    medicalRecord.getMedications(), medicalRecord.getAllergies());</span>
+<span class="fc" id="L66">		    resultResidents.add(residentToAdd);</span>
+		}
+	    }
+	}
+<span class="fc" id="L70">	resultFireAddressAlert.setResidents(resultResidents);</span>
+
+<span class="fc" id="L72">	return resultFireAddressAlert;</span>
+    }
+
+}
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

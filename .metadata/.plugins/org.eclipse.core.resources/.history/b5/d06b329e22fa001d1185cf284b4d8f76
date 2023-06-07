@@ -1,0 +1,29 @@
+package com.openclassroom.projet5.model;
+import java.util.List;
+
+
+import lombok.Data;
+
+@Data
+
+public class DataJson {
+
+	    List<Persons> persons;
+	    List<Firestations> firestations;
+	    List<MedicalRecords> medicalRecords;
+
+	    public DataJson() {
+		super();
+	    }
+
+	    public DataJson(List<Persons> persons, List<Firestations> firestations, List<MedicalRecords> medicalRecords) {
+		super();
+		this.persons = persons;
+		this.firestations = firestations;
+		this.medicalRecords = medicalRecords;
+	    }
+
+
+	
+
+}

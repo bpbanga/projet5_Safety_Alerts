@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FloodStationsServiceTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.Service.status</a> &gt; <span class="el_source">FloodStationsServiceTest.java</span></div><h1>FloodStationsServiceTest.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.Service.status;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.openclassroom.projet5.model.status.FloodStation;
+import com.openclassroom.projet5.service.status.IFloodStationsService;
+
+
+@SpringBootTest
+<span class="fc" id="L18">public class FloodStationsServiceTest {</span>
+    @Autowired
+    private IFloodStationsService floodStationsService;
+
+    @Test
+    public void shouldRetrieveCorrectFireStationCoverage() {
+<span class="fc" id="L24">	List&lt;Integer&gt; testStationsList = new ArrayList&lt;Integer&gt;();</span>
+<span class="fc" id="L25">	testStationsList.add(1);</span>
+<span class="fc" id="L26">	testStationsList.add(2);</span>
+<span class="fc" id="L27">	List&lt;FloodStation&gt; floodStationsTestResult = floodStationsService.getFloodStation(testStationsList);</span>
+
+<span class="fc" id="L29">	assertEquals(floodStationsTestResult.get(0).getAddress(), &quot;644 Gershwin Cir&quot;);</span>
+<span class="fc" id="L30">	assertNotNull(floodStationsTestResult.get(0).getFloodStationsPersons());</span>
+<span class="fc" id="L31">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

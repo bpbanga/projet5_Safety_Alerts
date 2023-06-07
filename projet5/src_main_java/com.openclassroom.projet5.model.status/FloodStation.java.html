@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>FloodStation.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.model.status</a> &gt; <span class="el_source">FloodStation.java</span></div><h1>FloodStation.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.model.status;
+
+
+import java.util.List;
+
+// flood/stations?
+public class FloodStation {
+    public String address;
+    public List&lt;FloodStationsPerson&gt; floodStationsPersons;
+
+    public String getAddress() {
+<span class="fc" id="L12">	return address;</span>
+    }
+
+    public void setAddress(String address) {
+<span class="fc" id="L16">	this.address = address;</span>
+<span class="fc" id="L17">    }</span>
+
+    public List&lt;FloodStationsPerson&gt; getFloodStationsPersons() {
+<span class="fc" id="L20">	return floodStationsPersons;</span>
+    }
+
+    public void setFloodStationsPersons(List&lt;FloodStationsPerson&gt; floodStationsPersons) {
+<span class="fc" id="L24">	this.floodStationsPersons = floodStationsPersons;</span>
+<span class="fc" id="L25">    }</span>
+
+    public FloodStation(String address, List&lt;FloodStationsPerson&gt; floodStationsPersons) {
+<span class="nc" id="L28">	super();</span>
+<span class="nc" id="L29">	this.address = address;</span>
+<span class="nc" id="L30">	this.floodStationsPersons = floodStationsPersons;</span>
+<span class="nc" id="L31">    }</span>
+
+    public FloodStation() {
+<span class="fc" id="L34">	super();</span>
+<span class="fc" id="L35">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

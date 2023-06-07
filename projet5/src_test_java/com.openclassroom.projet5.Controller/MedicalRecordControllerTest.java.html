@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>MedicalRecordControllerTest.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/test/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.Controller</a> &gt; <span class="el_source">MedicalRecordControllerTest.java</span></div><h1>MedicalRecordControllerTest.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.Controller;
+
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.openclassroom.projet5.controller.MedicalRecordController;
+import com.openclassroom.projet5.service.MedicalRecordService;
+
+
+
+@WebMvcTest(controllers = MedicalRecordController.class)
+<span class="fc" id="L23">public class MedicalRecordControllerTest {</span>
+<span class="fc" id="L24">    final String contentBody = &quot;{\&quot;firstName\&quot;: \&quot;John\&quot;, \&quot;lastName\&quot;: \&quot;Doe\&quot;, \&quot;birthdate\&quot;: \&quot;01/01/1990\&quot;, \&quot;medications\&quot;: [\&quot;aznol:350mg\&quot;], \&quot;allergies\&quot;: [\&quot;nillacilan\&quot;]}&quot;;</span>
+<span class="fc" id="L25">    final String contentBodyWithoutFirstname = &quot;{\&quot;lastName\&quot;: \&quot;Doe\&quot;, \&quot;birthdate\&quot;: \&quot;01/01/1990\&quot;, \&quot;medications\&quot;: [\&quot;aznol:350mg\&quot;], \&quot;allergies\&quot;: [\&quot;nillacilan\&quot;]}&quot;;</span>
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @MockBean
+    private MedicalRecordService medicalRecordService;
+
+    @Test
+    public void testGetMedicalRecord() throws Exception {
+<span class="fc" id="L35">	mockMvc.perform(get(&quot;/medicalRecord&quot;)).andExpect(status().isOk());</span>
+<span class="fc" id="L36">    }</span>
+
+    @Test
+    public void testPostMedicalRecord() throws Exception {
+<span class="fc" id="L40">	mockMvc.perform(post(&quot;/medicalRecord&quot;).contentType(MediaType.APPLICATION_JSON).content(contentBody))</span>
+<span class="fc" id="L41">		.andExpect(status().isCreated());</span>
+<span class="fc" id="L42">    }</span>
+
+    @Test
+    public void testPutMedicalRecord() throws Exception {
+<span class="fc" id="L46">	mockMvc.perform(put(&quot;/medicalRecord&quot;).contentType(MediaType.APPLICATION_JSON).content(contentBody))</span>
+<span class="fc" id="L47">		.andExpect(status().isOk());</span>
+<span class="fc" id="L48">    }</span>
+    
+    @Test
+    public void testDeleteMedicalRecord() throws Exception {
+<span class="fc" id="L52">	mockMvc.perform(delete(&quot;/medicalRecord&quot;).contentType(MediaType.APPLICATION_JSON).content(contentBody))</span>
+<span class="fc" id="L53">		.andExpect(status().isOk());</span>
+<span class="fc" id="L54">    }</span>
+
+    @Test
+    public void testPostWrongMedicalRecord() throws Exception {
+<span class="fc" id="L58">	mockMvc.perform(post(&quot;/medicalRecord&quot;).contentType(MediaType.APPLICATION_JSON).content(contentBodyWithoutFirstname))</span>
+<span class="fc" id="L59">		.andExpect(status().isBadRequest());</span>
+<span class="fc" id="L60">    }</span>
+
+    @Test
+    public void testPutWrongMedicalRecord() throws Exception {
+<span class="fc" id="L64">	mockMvc.perform(put(&quot;/medicalRecord&quot;).contentType(MediaType.APPLICATION_JSON).content(contentBodyWithoutFirstname))</span>
+<span class="fc" id="L65">		.andExpect(status().isBadRequest());</span>
+<span class="fc" id="L66">    }</span>
+
+    @Test
+    public void testDeleteWrongMedicalRecord() throws Exception {
+<span class="fc" id="L70">    	mockMvc.perform(delete(&quot;/medicalRecord&quot;).contentType(MediaType.APPLICATION_JSON).content(contentBodyWithoutFirstname))</span>
+<span class="fc" id="L71">		.andExpect(status().isBadRequest());</span>
+<span class="fc" id="L72">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

@@ -1,0 +1,27 @@
+package com.openclassroom.projet5;
+import java.io.IOException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.openclassroom.projet5.model.HelloWorld;
+import com.openclassroom.projet5.service.BuissnessService;
+
+
+@SpringBootApplication
+
+public class Projet5Application {
+	
+	  private static final Logger logger = LogManager.getLogger("AlertsApplication");
+
+	    public static void main(String[] args) throws IOException {
+		SpringApplication.run(Projet5Application.class, args);
+	    }
+
+}

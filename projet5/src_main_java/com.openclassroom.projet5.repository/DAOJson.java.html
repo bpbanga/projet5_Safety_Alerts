@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../../../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../../../jacoco-resources/report.gif" type="image/gif"/><title>DAOJson.java</title><link rel="stylesheet" href="../../../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../../../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../../../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../../../index.html" class="el_report">projet5 (1) (4 juin 2023 18:52:52)</a> &gt; <a href="../../index.html" class="el_group">projet5</a> &gt; <a href="../index.html" class="el_bundle">src/main/java</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.projet5.repository</a> &gt; <span class="el_source">DAOJson.java</span></div><h1>DAOJson.java</h1><pre class="source lang-java linenums">package com.openclassroom.projet5.repository;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.stereotype.Repository;
+
+import com.jsoniter.JsonIterator;
+import com.jsoniter.any.Any;
+import com.openclassroom.projet5.model.DataJson;
+
+
+
+
+	@Repository
+	public class DAOJson implements IDAOJson {
+<span class="fc" id="L21">	    private String jsonPath = &quot;src/main/resources/data_projet5.json&quot;;</span>
+<span class="fc" id="L22">	    private static final Logger logger = LogManager.getLogger(&quot;AlertsApplication&quot;);</span>
+
+	    private DataJson jsonData;
+
+<span class="fc" id="L26">	    public DAOJson() throws FileNotFoundException, IOException {</span>
+<span class="fc" id="L27">		this.readJson(this.jsonPath);</span>
+<span class="fc" id="L28">	    }</span>
+
+	    @Override
+	    public DataJson getJsonData() {
+<span class="fc" id="L32">		return jsonData;</span>
+	    }
+
+	    @Override
+	    public void setJsonData(DataJson jsonData) {
+<span class="fc" id="L37">		this.jsonData = jsonData;</span>
+<span class="fc" id="L38">	    }</span>
+
+	    @Override
+	    public String getJsonPath() {
+<span class="fc" id="L42">		return this.jsonPath;</span>
+	    }
+
+	    @Override
+	    public void setJsonPath(String jsonLocation) {
+<span class="nc" id="L47">		this.jsonPath = jsonLocation;</span>
+<span class="nc" id="L48">	    }</span>
+
+	    @Override
+	    public void readJson(String property) throws FileNotFoundException, IOException {
+
+<span class="fc" id="L53">		try (FileReader file = new FileReader(this.getJsonPath())) {</span>
+<span class="fc" id="L54">		    BufferedReader reader = new BufferedReader(file);</span>
+<span class="fc" id="L55">		    String jsonString = &quot;&quot;;</span>
+<span class="fc" id="L56">		    String line = reader.readLine();</span>
+
+<span class="fc bfc" id="L58" title="All 2 branches covered.">		    while (line != null) {</span>
+<span class="fc" id="L59">			jsonString += line;</span>
+<span class="fc" id="L60">			line = reader.readLine();</span>
+		    }
+<span class="fc" id="L62">		    Map&lt;String, Any&gt; deserializedMap = JsonIterator.deserialize(jsonString).asMap();</span>
+
+<span class="fc" id="L64">		    this.setJsonData(JsonIterator.deserialize(jsonString, DataJson.class));</span>
+		}
+		
+<span class="fc" id="L67">	   };</span>
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span>projet5 (1) (4 juin 2023 18:52:52)</div></body></html>

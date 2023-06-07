@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.DataJson"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.CommandLineRunner"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.service.BuissnessService"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.HelloWorld"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.repository.IDAOJson"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.service.IFireStationService"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.service.IMedicalRecordService"/>
+    <fullyQualifiedTypeName name="java.io.IOException"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.LogManager"/>
+    <fullyQualifiedTypeName name="org.apache.logging.log4j.Logger"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.MedicalRecords"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="io.micrometer.common.util.StringUtils"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.ChildAlert"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.FireAddressAlert"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.Resident"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.FireStationCoverage"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.FloodStation"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.FloodStationsPerson"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.PersonInfo"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.utils.AgeHandler"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.model.status.PhoneAlert"/>
+    <fullyQualifiedTypeName name="com.openclassroom.projet5.repository.DAOJson"/>
+</qualifiedTypeNameHistroy>

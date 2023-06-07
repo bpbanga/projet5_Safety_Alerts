@@ -1,0 +1,15 @@
+package com.openclassroom.projet5.model;
+
+import lombok.Data;
+
+@Data
+public class HelloWorld {
+ private String value = "Hello World from buisness service";
+
+
+@Override
+public String toString() {
+	return value ;
+}
+ 
+}

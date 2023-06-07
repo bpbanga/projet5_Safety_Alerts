@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="MedicalRecordControllerTest.testDeleteWrongMedicalRecord" project="projet5" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.openclassroom.projet5.Controller.MedicalRecordControllerTest" time="0.212" displayname="MedicalRecordControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.openclassroom.projet5.Controller.MedicalRecordControllerTest]">
+    <testcase name="testDeleteWrongMedicalRecord" classname="com.openclassroom.projet5.Controller.MedicalRecordControllerTest" time="0.212" displayname="testDeleteWrongMedicalRecord()" uniqueid="[engine:junit-jupiter]/[class:com.openclassroom.projet5.Controller.MedicalRecordControllerTest]/[method:testDeleteWrongMedicalRecord()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,5 @@
+package com.openclassroom.projet5.model.status;
+
+public class ChildAlert {
+
+}
