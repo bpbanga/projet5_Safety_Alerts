@@ -1,0 +1,15 @@
+spring.application.name=projet5
+server.port=8080
+spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+
+management.endpoint.info.enabled=true
+management.endpoint.health.enabled=true
+management.endpoint.metrics.enabled=true
+management.endpoint.httptrace.enabled=true
+management.endpoints.web.exposure.include=*
+management.endpoint.shutdown.enabled=true
+
+management.info.java.enabled=true
+
+
+
