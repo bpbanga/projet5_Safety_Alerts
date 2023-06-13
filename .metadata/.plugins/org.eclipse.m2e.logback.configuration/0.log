@@ -1041,3 +1041,7 @@
 2023-06-07 17:19:59,754 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2023-06-07 17:19:59,755 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
 2023-06-07 17:19:59,757 [Worker-18: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\Nei\OneDrive\Documents\formation_openclassrom\form_java\projet5\projet5\src\test\resources
+2023-06-13 12:58:43,861 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+2023-06-13 12:59:02,782 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2023-06-13 12:59:02,812 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 3 resources from src\main\resources to target\classes
+2023-06-13 12:59:02,831 [Worker-11: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\Nei\OneDrive\Documents\formation_openclassrom\form_java\projet5\projet5\src\test\resources
