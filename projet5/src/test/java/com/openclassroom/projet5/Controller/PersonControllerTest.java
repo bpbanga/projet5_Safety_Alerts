@@ -47,7 +47,9 @@ public class PersonControllerTest {
 
     @Test
     public void testDeletePerson() throws Exception {
-	mockMvc.perform(delete("/person").contentType(MediaType.APPLICATION_JSON).content(contentBody))
+    	mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON).content(contentBody));
+    	
+	mockMvc.perform(delete("/person").param("id","JohnDoe").contentType(MediaType.APPLICATION_JSON).content(contentBody))
 		.andExpect(status().isOk());
     }
 

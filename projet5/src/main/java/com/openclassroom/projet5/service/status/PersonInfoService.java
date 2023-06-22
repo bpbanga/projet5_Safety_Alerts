@@ -47,7 +47,7 @@ public class PersonInfoService implements IPersonInfoService {
 	// Looping through the filtered list of persons to retrieve the relevant data
 	// from medicalRecords
 	for (Persons filteredPerson : filteredPersons) {
-	    PersonInfo personInfoToAdd = new PersonInfo();
+	   
 	    for (MedicalRecords medicalRecord : medicalRecords) {
 		if (medicalRecord.getFirstName().equals(filteredPerson.getFirstName())
 			&& medicalRecord.getLastName().equals(filteredPerson.getLastName())) {

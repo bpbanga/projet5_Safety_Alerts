@@ -23,21 +23,23 @@ public class MedicalRecordServiceTest {
 
     @Autowired
     private IMedicalRecordService medicalRecordService;
+    private static String idMedicalRecord ;
     private static MedicalRecords medicalRecordToAdd = new MedicalRecords();;
 
     @BeforeAll
     public static void setup() {
 
-	medicalRecordToAdd.setFirstName("Test");
-	medicalRecordToAdd.setLastName("Test2");
+	medicalRecordToAdd.setFirstName("John");
+	medicalRecordToAdd.setLastName("Doe");
 	medicalRecordToAdd.setBirthdate("01/01/1990");
 	medicalRecordToAdd.setMedications(Arrays.asList("aznol:350mg"));
 	medicalRecordToAdd.setAllergies(Arrays.asList("nillacilan"));
+	idMedicalRecord = "John" + "Doe";
     }
 
     @AfterEach
     public void deleteAddedMedicalRecord() {
-	medicalRecordService.deleteMedicalRecord(medicalRecordToAdd);
+	medicalRecordService.deleteMedicalRecord(idMedicalRecord);
     }
 
     @Test
@@ -57,8 +59,8 @@ public class MedicalRecordServiceTest {
     @Test
     public void shouldEditSuccessfullyPerson() {
 	MedicalRecords medicalRecordToEdit = new MedicalRecords();
-	medicalRecordToEdit.setFirstName("Test");
-	medicalRecordToEdit.setLastName("Test2");
+	medicalRecordToEdit.setFirstName("John");
+	medicalRecordToEdit.setLastName("Doe");
 	medicalRecordToEdit.setAllergies(Arrays.asList("nillacilan0"));
 
 	medicalRecordService.postMedicalRecord(medicalRecordToAdd);
@@ -72,7 +74,7 @@ public class MedicalRecordServiceTest {
     @Test
     public void shouldDeleteSuccessfullyPerson() {
 	medicalRecordService.postMedicalRecord(medicalRecordToAdd);
-	medicalRecordService.deleteMedicalRecord(medicalRecordToAdd);
+	medicalRecordService.deleteMedicalRecord(idMedicalRecord);
 
 	List<MedicalRecords> listMedicalRecord = medicalRecordService.getMedicalRecords();
 	assertFalse(listMedicalRecord.get(listMedicalRecord.size() - 1).getLastName()

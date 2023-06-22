@@ -3,6 +3,7 @@ package com.openclassroom.projet5.Service.status;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
@@ -20,17 +21,24 @@ import com.openclassroom.projet5.service.IFireStationService;
 public class FireStationServiceTest {
     @Autowired
     private IFireStationService fireStationService;
+    private static String idfireStationAddress ;
+    private static String idfireStationNber ;
+
+    
+
     private static FireStations fireStationToAdd = new FireStations();
 
     @BeforeAll
     public static void setup() {
-	fireStationToAdd.setAddress("Test Address");
+	fireStationToAdd.setAddress("150955 Culver St");
 	fireStationToAdd.setStation("2");
+	idfireStationAddress = "150955 Culver St";
+	idfireStationNber = "2";
     }
 
     @AfterEach
-    public void deleteAddedPerson() {
-	fireStationService.deleteFireStation(fireStationToAdd);
+    public void deleteAddedFireStation() {
+	fireStationService.deleteFireStation( idfireStationAddress , idfireStationNber );
     }
 
     @Test
@@ -49,7 +57,7 @@ public class FireStationServiceTest {
     @Test
     public void shouldEditSuccessfullyFireStation() {
     	FireStations fireStationToEdit = new FireStations();
-	fireStationToEdit.setAddress("Test Address");
+	fireStationToEdit.setAddress(idfireStationAddress);
 	fireStationToEdit.setStation("4");
 
 	fireStationService.postFireStation(fireStationToAdd);
@@ -60,12 +68,23 @@ public class FireStationServiceTest {
     }
 
     @Test
-    public void shouldDeleteSuccessfullyPerson() {
+    public void shouldDeleteSuccessfullyFireStationByAdress() {
 	fireStationService.postFireStation(fireStationToAdd);
-	fireStationService.deleteFireStation(fireStationToAdd);
+	int nbStation = fireStationService.getFireStations().size();
+	fireStationService.deleteFireStation(  idfireStationAddress, null );
 
 	List<FireStations> listFireStation = fireStationService.getFireStations();
-	assertFalse(listFireStation.get(listFireStation.size() - 1).getAddress().equals(fireStationToAdd.getAddress()));
+	assertTrue(listFireStation.size() == nbStation - 1);
+    }
+    
+    @Test
+    public void shouldDeleteSuccessfullyFireStationById() {
+	fireStationService.postFireStation(fireStationToAdd);
+	int nbStation = fireStationService.getFireStations().size();
+	fireStationService.deleteFireStation(   null , idfireStationNber);
+
+	List<FireStations> listFireStation = fireStationService.getFireStations();
+	assertTrue(listFireStation.size() == nbStation - 1);
     }
 
 }

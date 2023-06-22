@@ -64,15 +64,20 @@ public class FireStationService implements IFireStationService {
      * @Param FireStation fireStationToDelete
      */
     @Override
-    public void deleteFireStation(FireStations fireStationToDelete) {
+    public boolean deleteFireStation(String adresse, String id) {
+    	boolean result = false;
+
 	List<FireStations> fireStations = getFireStations();
 
 	for (int i = 0; i < fireStations.size(); i++) {
-	    if (fireStations.get(i).getAddress().equals(fireStationToDelete.getAddress())
-		    && fireStations.get(i).getStation().equals(fireStationToDelete.getStation())) {
+	    if ( (adresse != null && adresse.equals(fireStations.get(i).getAddress()))
+	    	||(id != null && id.equals(fireStations.get(i).getStation()) ))
+		     {
+	    	result = true;
 		fireStations.remove(i);
 	    }
 	}
+	return result;
     }
 
 }

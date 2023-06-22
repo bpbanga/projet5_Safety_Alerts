@@ -20,8 +20,8 @@ import com.openclassroom.projet5.service.status.FireStationCoverageService;
 
 @WebMvcTest(controllers = FireStationController.class)
 public class FireStationControllerTest {
-    final String contentBodyFireStation = "{\"address\": \"12 Street\", \"station\": \"2\"}";
-    final String contentBodyFireStationNull = "{\"station\": \"2\"}";
+    final String contentBodyFireStation = "{\"address\": \"1509 Culver St\", \"station\": \"4\"}";
+    final String contentBodyFireStationNull = "{\"station\": \"4\"}";
 
     @Autowired
     private MockMvc mockMvc;
@@ -48,7 +48,7 @@ public class FireStationControllerTest {
 
     @Test
     public void testDeleteFireStation() throws Exception {
-	mockMvc.perform(delete("/firestation").contentType(MediaType.APPLICATION_JSON).content(contentBodyFireStation))
+	mockMvc.perform(delete("/firestation").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isOk());
     }
 

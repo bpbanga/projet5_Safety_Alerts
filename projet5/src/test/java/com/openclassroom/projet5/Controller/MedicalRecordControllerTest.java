@@ -21,9 +21,9 @@ import com.openclassroom.projet5.service.MedicalRecordService;
 
 @WebMvcTest(controllers = MedicalRecordController.class)
 public class MedicalRecordControllerTest {
-    final String contentBody = "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"birthdate\": \"01/01/1990\", \"medications\": [\"aznol:350mg\"], \"allergies\": [\"nillacilan\"]}";
+    final String contentBody = "{\"firstName\": \"John\", \"lastName\": \"Boyd\", \"birthdate\": \"01/01/1990\", \"medications\": [\"aznol:350mg\"], \"allergies\": [\"nillacilan\"]}";
     final String contentBodyWithoutFirstname = "{\"lastName\": \"Doe\", \"birthdate\": \"01/01/1990\", \"medications\": [\"aznol:350mg\"], \"allergies\": [\"nillacilan\"]}";
-
+    final String id = "JohnDoe";
     @Autowired
     private MockMvc mockMvc;
 
@@ -49,7 +49,10 @@ public class MedicalRecordControllerTest {
     
     @Test
     public void testDeleteMedicalRecord() throws Exception {
-	mockMvc.perform(delete("/medicalRecord").contentType(MediaType.APPLICATION_JSON).content(contentBody))
+    	mockMvc.perform(post("/medicalRecord").contentType(MediaType.APPLICATION_JSON).content(contentBody));
+
+    	mockMvc.perform(delete("/medicalRecord")
+    			.param("id", "JohnBoyd"))
 		.andExpect(status().isOk());
     }
 

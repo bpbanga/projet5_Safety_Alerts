@@ -75,16 +75,19 @@ import com.openclassroom.projet5.repository.IDAOJson;
 	     * @Param Person personToDelete
 	     */
 	    @Override
-	    public void deletePerson(Persons personToDelete) {
+	    public boolean deletePerson( String personToDelete) {
+	    	boolean result = false;
 		List<Persons> persons = getPersons();
-		Boolean personExist = false;
+		boolean personExist = false;
 		for (int i = 0; i < persons.size(); i++) {
-		    if (persons.get(i).getFirstName().equals(personToDelete.getFirstName())
-			    && persons.get(i).getLastName().equals(personToDelete.getLastName())) {
+		    if (personToDelete.equals(persons.get(i).getFirstName() + persons.get(i).getLastName())
+			   ) {
+		    	result = true;
 			persons.remove(i);
 			personExist = true;
 		    }
 		}
+		return result;
 	    }
 
 	

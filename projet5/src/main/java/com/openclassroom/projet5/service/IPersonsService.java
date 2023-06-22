@@ -14,7 +14,7 @@ public interface IPersonsService {
 
 	    void putPerson(Persons person);
 
-	    void deletePerson(Persons person);
+	    boolean deletePerson(String id);
 	
 
 }

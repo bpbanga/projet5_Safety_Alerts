@@ -67,15 +67,18 @@ public class MedicalRecordService implements IMedicalRecordService {
      * @Param MedicalRecord medicalRecordToDelete
      */
     @Override
-    public void deleteMedicalRecord(MedicalRecords medicalRecordToDelete) {
+    public boolean deleteMedicalRecord(String medicalRecordToDelete) {
+    	boolean result = false;
 	List<MedicalRecords> medicalRecords = getMedicalRecords();
 
 	for (int i = 0; i < medicalRecords.size(); i++) {
-	    if (medicalRecords.get(i).getFirstName().equals(medicalRecordToDelete.getFirstName())
-		    && medicalRecords.get(i).getLastName().equals(medicalRecordToDelete.getLastName())) {
+	    if (medicalRecordToDelete.equals(medicalRecords.get(i).getFirstName()+medicalRecords.get(i).getLastName() ))
+		    {
+	    	result = true;
 		medicalRecords.remove(i);
 	    }
 	}
+	return result;
     }
 
 }

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassroom.projet5.model.Persons;
@@ -85,16 +88,25 @@ public class PersonController {
      * 
      * @param Person person
      */
-    @DeleteMapping(value = "/person")
-    public ResponseEntity<String> removePerson(@RequestBody Persons person) {
+    @RequestMapping(value = "/person",method = RequestMethod.DELETE,  params = { "id" })
+    public ResponseEntity<String> removePerson(@RequestParam(value = "id") String id) {
 	logger.info("DELETE request to /person");
 	try {
-	    if (person.getFirstName().equals(null) || person.getLastName().equals(null)) {
+		 if (id.equals(null) || id.isEmpty() ){
 		throw new Exception();
 	    }
-	    PersonService.deletePerson(person);
+		
+		 boolean result = PersonService.deletePerson(id);
+		 if (result) {
 	    logger.info("PersonService.deletePerson success");
 	    return new ResponseEntity<String>("DELETE request to /person successful", HttpStatus.OK);
+		 }else
+		 {
+			    logger.info("PersonService.deletePerson not found");
+			    return new ResponseEntity<String>("DELETE request to /person not found", HttpStatus.NOT_FOUND);
+		 }	
+		    
+		
 	} catch (Exception e) {
 	    logger.error("PersonService.deletePerson failed: Missing Values");
 	    return new ResponseEntity<String>("DELETE request to /person failed: Missing Values",

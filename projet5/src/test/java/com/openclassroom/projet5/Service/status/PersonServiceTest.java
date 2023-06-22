@@ -21,6 +21,8 @@ public class PersonServiceTest {
 
     @Autowired
     private IPersonsService personService;
+    private static String idPerson ;
+   
     private static Persons personToAdd = new Persons();;
 
     @BeforeAll
@@ -32,11 +34,12 @@ public class PersonServiceTest {
 	personToAdd.setAddress("11 Test Road");
 	personToAdd.setZip("12345");
 	personToAdd.setCity("City");
+	idPerson = "John" + "Doe" ;
     }
 
     @AfterEach
     public void deleteAddedPerson() {
-	personService.deletePerson(personToAdd);
+	personService.deletePerson(idPerson);
     }
 
     @Test
@@ -70,7 +73,7 @@ public class PersonServiceTest {
     @Test
     public void shouldDeleteSuccessfullyPerson() {
 	personService.postPerson(personToAdd);
-	personService.deletePerson(personToAdd);
+	personService.deletePerson(idPerson);
 
 	List<Persons> listPerson = personService.getPersons();
 	assertFalse(listPerson.get(listPerson.size() - 1).getLastName().equals(personToAdd.getLastName()));

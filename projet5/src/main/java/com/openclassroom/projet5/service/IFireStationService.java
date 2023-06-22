@@ -11,6 +11,6 @@ public interface IFireStationService {
 
 	    public void putFireStation(FireStations fireStationToUpdate);
 
-	    public void deleteFireStation(FireStations fireStationToDelete);
+	    public boolean deleteFireStation(String address, String id);
 	
 }

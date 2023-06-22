@@ -13,7 +13,7 @@ public interface IMedicalRecordService {
 
 	    void putMedicalRecord(MedicalRecords medicalRecordToUpdate);
 
-	    void deleteMedicalRecord(MedicalRecords medicalRecordToDelete);
+	    boolean deleteMedicalRecord(String id);
 
 }
 

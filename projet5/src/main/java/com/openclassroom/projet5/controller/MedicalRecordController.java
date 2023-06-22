@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.openclassroom.projet5.model.MedicalRecords;
@@ -85,17 +88,24 @@ public class MedicalRecordController {
      * 
      * @param MedicalRecord medicalRecord
      */
-    @DeleteMapping(value = "/medicalRecord")
-    public ResponseEntity<String> removeMedicalRecord( @RequestBody MedicalRecords medicalRecord) {
+    @RequestMapping(value = "/medicalRecord" ,method = RequestMethod.DELETE)
+    public ResponseEntity<String> removeMedicalRecord(@RequestParam(value = "id") String id) {
 	logger.info("DELETE request to /firestation/" );
 	try {
-	    if (medicalRecord.getFirstName().equals(null) || medicalRecord.getLastName().equals(null)) {
+	    if (id.equals(null) || id.isEmpty() ) {
 		throw new Exception();
 	    }
 	  
-	    MedicalRecordService.deleteMedicalRecord(medicalRecord);
+	    boolean result = MedicalRecordService.deleteMedicalRecord(id);
+	    if (result) {
 	    logger.info("MedicalRecordService.deleteMedicalRecord success");
 	    return new ResponseEntity<String>("DELETE request to /medicalRecord successful", HttpStatus.OK);
+	    }else
+	    {
+		    logger.info("MedicalRecordService.deleteMedicalRecord not found");
+		    return new ResponseEntity<String>("DELETE request to /medicalRecord not found", HttpStatus.NOT_FOUND);
+		    }	
+	    
 	} catch (Exception e) {
 	    logger.error("MedicalRecordService.deleteMedicalRecord failed: Missing Values");
 	    return new ResponseEntity<String>("DELETE request to /medicalRecord failed: Missing Values",
