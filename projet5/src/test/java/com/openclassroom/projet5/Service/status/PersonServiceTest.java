@@ -62,6 +62,10 @@ public class PersonServiceTest {
 	personToEdit.setFirstName("John");
 	personToEdit.setLastName("Doe");
 	personToEdit.setPhone("9999999999");
+	personToEdit.setAddress("11 Test Road");
+	personToEdit.setCity("City");
+	personToEdit.setEmail("john@doe.net");
+	personToEdit.setZip("12345");
 
 	personService.postPerson(personToAdd);
 	personService.putPerson(personToEdit);

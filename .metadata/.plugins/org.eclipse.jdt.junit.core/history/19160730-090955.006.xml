@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="com.openclassroom.projet5.Service.status.MedicalRecordServiceTest" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="com.openclassroom.projet5.Service.status.MedicalRecordServiceTest" time="0.031">
-    <testcase name="shouldEditSuccessfullyPerson" classname="com.openclassroom.projet5.Service.status.MedicalRecordServiceTest" time="0.014"/>
-    <testcase name="shouldRetrieveNonEmptyPersonList" classname="com.openclassroom.projet5.Service.status.MedicalRecordServiceTest" time="0.002"/>
-    <testcase name="shouldAddSuccessfullyPerson" classname="com.openclassroom.projet5.Service.status.MedicalRecordServiceTest" time="0.002"/>
-    <testcase name="shouldDeleteSuccessfullyPerson" classname="com.openclassroom.projet5.Service.status.MedicalRecordServiceTest" time="0.003"/>
-  </testsuite>
-</testrun>

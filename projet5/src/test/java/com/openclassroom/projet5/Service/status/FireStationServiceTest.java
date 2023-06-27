@@ -1,7 +1,6 @@
 package com.openclassroom.projet5.Service.status;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -26,7 +25,7 @@ public class FireStationServiceTest {
 
     
 
-    private static FireStations fireStationToAdd = new FireStations();
+    private static FireStations fireStationToAdd = new FireStations(idfireStationAddress,idfireStationNber);
 
     @BeforeAll
     public static void setup() {

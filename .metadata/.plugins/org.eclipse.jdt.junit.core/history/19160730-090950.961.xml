@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="com.openclassroom.projet5.Service.status.PersonInfoServiceTest" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.openclassroom.projet5.Service.status.PersonInfoServiceTest" time="0.034">
-    <testcase name="shouldRetrieveCorrectPersonInfo" classname="com.openclassroom.projet5.Service.status.PersonInfoServiceTest" time="0.007"/>
-  </testsuite>
-</testrun>

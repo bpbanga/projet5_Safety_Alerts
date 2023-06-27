@@ -7,7 +7,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -48,7 +47,7 @@ public class FireStationController {
     public ResponseEntity<String> addFireStation(@RequestBody FireStations fireStation) {
 	logger.info("POST request to /firestation");
 	try {
-	    if (fireStation.getAddress().equals(null)) {
+	    if (fireStation.getAddress()== null) {
 		throw new Exception();
 	    }
 	    FireStationService.postFireStation(fireStation);
@@ -70,7 +69,7 @@ public class FireStationController {
     public ResponseEntity<String> updateFireStation(@RequestBody FireStations fireStation) {
 	logger.info("PUT request to /firestation");
 	try {
-	    if (fireStation.getAddress().equals(null)) {
+	    if (fireStation.getAddress()== null) {
 		throw new Exception();
 	    }
 	    FireStationService.putFireStation(fireStation);
@@ -90,10 +89,11 @@ public class FireStationController {
      */
     @RequestMapping(value = "/firestation" ,method = RequestMethod.DELETE)
     public ResponseEntity<String> removeFireStation(@RequestParam(value = "address" , required = false) String address, @RequestParam(value = "id" , required = false) String id) {
-	logger.info("DELETE request to /firestation");
+	logger.info("DELETE request to /firestation?adress="+ address + "&id="+ id);
 	try {
-	    if ((address.equals(null) || address.isEmpty()) && (id.equals(null) || id.isEmpty())) {
-		throw new Exception();
+		if ((address == null || address.trim().length() == 0) && (id == null || id.trim().length() == 0)) {
+	    	
+	    	throw new Exception();
 	    }
 	    boolean result = FireStationService.deleteFireStation(address , id);
 	    
@@ -106,8 +106,8 @@ public class FireStationController {
 				    return new ResponseEntity<String>("DELETE request to /firestation not found", HttpStatus.NOT_FOUND);
 			 }	
 			    
-	} catch (Exception e) {
-	    logger.error("FireStationService.postFireStation failed: Missing Values");
+	} catch (Exception e) {		
+	    logger.error("FireStationService.deleteFireStation failed: Missing Values");
 	    return new ResponseEntity<String>("DELETE request to /firestation failed: Missing Values",
 		    HttpStatus.BAD_REQUEST);
 	}

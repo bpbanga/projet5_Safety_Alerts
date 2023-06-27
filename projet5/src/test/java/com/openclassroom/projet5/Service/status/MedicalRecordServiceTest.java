@@ -25,6 +25,7 @@ public class MedicalRecordServiceTest {
     private IMedicalRecordService medicalRecordService;
     private static String idMedicalRecord ;
     private static MedicalRecords medicalRecordToAdd = new MedicalRecords();;
+    
 
     @BeforeAll
     public static void setup() {
@@ -61,6 +62,8 @@ public class MedicalRecordServiceTest {
 	MedicalRecords medicalRecordToEdit = new MedicalRecords();
 	medicalRecordToEdit.setFirstName("John");
 	medicalRecordToEdit.setLastName("Doe");
+	medicalRecordToEdit.setBirthdate("01/01/1990");
+	medicalRecordToEdit.setMedications(Arrays.asList("aznol:350mg"));
 	medicalRecordToEdit.setAllergies(Arrays.asList("nillacilan0"));
 
 	medicalRecordService.postMedicalRecord(medicalRecordToAdd);

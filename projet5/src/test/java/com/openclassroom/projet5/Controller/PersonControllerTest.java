@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,12 +16,12 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.openclassroom.projet5.controller.PersonController;
 import com.openclassroom.projet5.service.PersonService;
-import com.openclassroom.projet5.service.status.PersonInfoService;
 
 @WebMvcTest(controllers = PersonController.class)
 public class PersonControllerTest {
     final String contentBody = "{\"firstName\": \"John\", \"lastName\": \"Doe\", \"address\": \"11 Street\", \"city\": \"TestCity\", \"zip\": \"12345\", \"phone\": \"010101\", \"email\": \"john@doe.com\"}";
     final String contentBodyNull = "{\"lastName\": \"Doe\", \"address\": \"11 Street\", \"city\": \"TestCity\", \"zip\": \"12345\", \"phone\": \"010101\", \"email\": \"john@doe.com\"}";
+    final String contentBodyKo = "{\"firstName\":null, \"lastName\":null, \"address\": \"11 Street\", \"city\": \"TestCity\", \"zip\": \"12345\", \"phone\": \"010101\", \"email\": \"john@doe.com\"}";
 
     @Autowired
     private MockMvc mockMvc;
@@ -47,10 +48,13 @@ public class PersonControllerTest {
 
     @Test
     public void testDeletePerson() throws Exception {
-    	mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON).content(contentBody));
-    	
-	mockMvc.perform(delete("/person").param("id","JohnDoe").contentType(MediaType.APPLICATION_JSON).content(contentBody))
-		.andExpect(status().isOk());
+    	   Mockito.when(personService.deletePerson("JohnDoe")).thenReturn(true);
+    	   mockMvc.perform(delete("/person")
+    			  .param("id","JohnDoe")
+    			  .contentType(MediaType.APPLICATION_JSON))
+    	          .andExpect(status().isOk());
+    	    
+
     }
 
     @Test
@@ -70,5 +74,40 @@ public class PersonControllerTest {
 	mockMvc.perform(delete("/person").contentType(MediaType.APPLICATION_JSON).content(contentBodyNull))
 		.andExpect(status().isBadRequest());
     }
+    
+    @Test
+    public void testDeletePersonNotFound() throws Exception {
+    	   Mockito.when(personService.deletePerson("JohnDoe")).thenReturn(false);
+    	   mockMvc.perform(delete("/person")
+    			  .param("id","JohnDoe")
+    			  .contentType(MediaType.APPLICATION_JSON))
+    	          .andExpect(status().isNotFound());
+    	    
+
+    }
+    
+    @Test
+    public void testPostPersonKo() throws Exception {
+	mockMvc.perform(post("/person").contentType(MediaType.APPLICATION_JSON).content(contentBodyKo))
+		.andExpect(status().isBadRequest());
+    }
+     
+    @Test
+    public void testPutPersonKo() throws Exception {
+	mockMvc.perform(put("/person").contentType(MediaType.APPLICATION_JSON).content(contentBodyKo))
+		.andExpect(status().isBadRequest());
+    }
+    
+    
+    @Test
+    public void testDeletePersonKo() throws Exception {
+    	   mockMvc.perform(delete("/person")
+    			  .param("id","")
+    			  .contentType(MediaType.APPLICATION_JSON))
+    	          .andExpect(status().isBadRequest());
+    	    
+
+    }
+
 
 }

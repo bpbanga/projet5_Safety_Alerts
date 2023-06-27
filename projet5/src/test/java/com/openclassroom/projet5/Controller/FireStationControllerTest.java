@@ -6,7 +6,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,14 +17,13 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.openclassroom.projet5.controller.FireStationController;
 import com.openclassroom.projet5.service.FireStationService;
-import com.openclassroom.projet5.service.status.FireStationCoverageService;
 
 
 @WebMvcTest(controllers = FireStationController.class)
 public class FireStationControllerTest {
     final String contentBodyFireStation = "{\"address\": \"1509 Culver St\", \"station\": \"4\"}";
     final String contentBodyFireStationNull = "{\"station\": \"4\"}";
-
+   
     @Autowired
     private MockMvc mockMvc;
 
@@ -48,8 +49,33 @@ public class FireStationControllerTest {
 
     @Test
     public void testDeleteFireStation() throws Exception {
-	mockMvc.perform(delete("/firestation").contentType(MediaType.APPLICATION_JSON))
-		.andExpect(status().isOk());
+    	Mockito.when(fireStationService.deleteFireStation("1509 Culver St" , "4")).thenReturn(true);
+    	 mockMvc.perform(delete("/firestation")
+   			  .param("address" , "1509 Culver St" )
+   			  .param("id" , "4" )
+   			  .contentType(MediaType.APPLICATION_JSON))
+   	          .andExpect(status().isOk());
+   	    
+    }
+    
+    @Test
+    public void testDeleteFireStationId() throws Exception {
+    	Mockito.when(fireStationService.deleteFireStation(null , "4")).thenReturn(true);
+    	 mockMvc.perform(delete("/firestation")   			  
+   			  .param("id" , "4" )
+   			  .contentType(MediaType.APPLICATION_JSON))
+   	          .andExpect(status().isOk());
+   	    
+    }
+    
+    @Test
+    public void testDeleteFireStationAddress() throws Exception {
+    	Mockito.when(fireStationService.deleteFireStation("1509 Culver St" , null)).thenReturn(true);
+    	 mockMvc.perform(delete("/firestation")
+   			  .param("address" , "1509 Culver St" )
+   			  .contentType(MediaType.APPLICATION_JSON))
+   	          .andExpect(status().isOk());
+   	    
     }
 
     @Test
@@ -68,8 +94,19 @@ public class FireStationControllerTest {
     @Test
     public void testDeleteWrongFireStation() throws Exception {
 	mockMvc.perform(
-		delete("/firestation").contentType(MediaType.APPLICATION_JSON).content(contentBodyFireStationNull))
+		delete("/firestation").contentType(MediaType.APPLICATION_JSON))
 		.andExpect(status().isBadRequest());
+    }
+    
+    @Test
+    public void testDeleteFireStationNotFound() throws Exception {
+    	Mockito.when(fireStationService.deleteFireStation("1509 Culver St" , "4")).thenReturn(false);
+    	 mockMvc.perform(delete("/firestation")
+   			  .param("address" , "1509 Culver St" )
+   			  .param("id" , "4" )
+   			  .contentType(MediaType.APPLICATION_JSON))
+   	          .andExpect(status().isNotFound());
+   	    
     }
 
 }

@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,7 +49,7 @@ public class PersonController {
     public ResponseEntity<String> addPerson(@RequestBody Persons person) {
 	logger.info("POST request to /person");
 	try {
-	    if (person.getFirstName().equals(null) || person.getLastName().equals(null)) {
+	    if (person.getFirstName()== null || person.getLastName()== null) {
 		throw new Exception();
 	    }
 	    PersonService.postPerson(person);
@@ -71,7 +70,7 @@ public class PersonController {
     public ResponseEntity<String> updatePerson(@RequestBody Persons person) {
 	logger.info("PUT request to /person");
 	try {
-	    if (person.getFirstName().equals(null) || person.getLastName().equals(null)) {
+	    if (person.getFirstName()== null || person.getLastName()== null) {
 		throw new Exception();
 	    }
 	    PersonService.putPerson(person);
@@ -92,7 +91,7 @@ public class PersonController {
     public ResponseEntity<String> removePerson(@RequestParam(value = "id") String id) {
 	logger.info("DELETE request to /person");
 	try {
-		 if (id.equals(null) || id.isEmpty() ){
+		if (id == null || id.trim().length() == 0){
 		throw new Exception();
 	    }
 		

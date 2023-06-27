@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -24,6 +25,8 @@ public class MedicalRecordControllerTest {
     final String contentBody = "{\"firstName\": \"John\", \"lastName\": \"Boyd\", \"birthdate\": \"01/01/1990\", \"medications\": [\"aznol:350mg\"], \"allergies\": [\"nillacilan\"]}";
     final String contentBodyWithoutFirstname = "{\"lastName\": \"Doe\", \"birthdate\": \"01/01/1990\", \"medications\": [\"aznol:350mg\"], \"allergies\": [\"nillacilan\"]}";
     final String id = "JohnDoe";
+    final String contentBodyKo = "{\"firstName\": null, \"lastName\":null, \"birthdate\": \"01/01/1990\", \"medications\": [\"aznol:350mg\"], \"allergies\": [\"nillacilan\"]}";
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -49,11 +52,11 @@ public class MedicalRecordControllerTest {
     
     @Test
     public void testDeleteMedicalRecord() throws Exception {
-    	mockMvc.perform(post("/medicalRecord").contentType(MediaType.APPLICATION_JSON).content(contentBody));
-
+    	Mockito.when(medicalRecordService.deleteMedicalRecord("JohnDoe")).thenReturn(true);
     	mockMvc.perform(delete("/medicalRecord")
-    			.param("id", "JohnBoyd"))
-		.andExpect(status().isOk());
+    			.param("id", "JohnDoe")
+    			.contentType(MediaType.APPLICATION_JSON))
+		        .andExpect(status().isOk());
     }
 
     @Test
@@ -73,4 +76,35 @@ public class MedicalRecordControllerTest {
     	mockMvc.perform(delete("/medicalRecord").contentType(MediaType.APPLICATION_JSON).content(contentBodyWithoutFirstname))
 		.andExpect(status().isBadRequest());
     }
+    
+    @Test
+    public void testDeleteMedicalRecordNotFound() throws Exception {
+    	Mockito.when(medicalRecordService.deleteMedicalRecord("JohnDoe")).thenReturn(false);
+    	mockMvc.perform(delete("/medicalRecord")
+    			.param("id", "JohnDoe")
+    			.contentType(MediaType.APPLICATION_JSON))
+		        .andExpect(status().isNotFound());
+    }
+    
+    @Test
+    public void testPostMedicalRecordKo() throws Exception {
+	mockMvc.perform(post("/medicalRecord").contentType(MediaType.APPLICATION_JSON).content(contentBodyKo))
+		.andExpect(status().isBadRequest());
+    }
+    
+    @Test
+    public void testPutMedicalRecordKo() throws Exception {
+	mockMvc.perform(put("/medicalRecord").contentType(MediaType.APPLICATION_JSON).content(contentBodyKo))
+		.andExpect(status().isBadRequest());
+    }
+    
+    
+    @Test
+    public void testDeleteMedicalRecordKo() throws Exception {
+    	mockMvc.perform(delete("/medicalRecord")
+    			.param("id", "")
+    			.contentType(MediaType.APPLICATION_JSON))
+		        .andExpect(status().isBadRequest());
+    }
+
 }

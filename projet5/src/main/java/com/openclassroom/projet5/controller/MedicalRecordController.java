@@ -7,9 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,7 +46,7 @@ public class MedicalRecordController {
     public ResponseEntity<String> addMedicalRecord(@RequestBody MedicalRecords medicalRecord) {
 	logger.info("POST request to /medicalRecord");
 	try {
-	    if (medicalRecord.getFirstName().equals(null) || medicalRecord.getLastName().equals(null)) {
+	    if (medicalRecord.getFirstName()== null || medicalRecord.getLastName()== null) {
 		throw new Exception();
 	    }
 	    MedicalRecordService.postMedicalRecord(medicalRecord);
@@ -70,7 +68,7 @@ public class MedicalRecordController {
     public ResponseEntity<String> updateMedicalRecord(@RequestBody MedicalRecords medicalRecord) {
 	logger.info("PUT request to /medicalRecord");
 	try {
-	    if (medicalRecord.getFirstName().equals(null) || medicalRecord.getLastName().equals(null)) {
+	    if (medicalRecord.getFirstName()== null || medicalRecord.getLastName() == null) {
 		throw new Exception();
 	    }
 	    MedicalRecordService.putMedicalRecord(medicalRecord);
@@ -92,7 +90,7 @@ public class MedicalRecordController {
     public ResponseEntity<String> removeMedicalRecord(@RequestParam(value = "id") String id) {
 	logger.info("DELETE request to /firestation/" );
 	try {
-	    if (id.equals(null) || id.isEmpty() ) {
+	    if (id == null || id.trim().length() == 0)  {
 		throw new Exception();
 	    }
 	  
