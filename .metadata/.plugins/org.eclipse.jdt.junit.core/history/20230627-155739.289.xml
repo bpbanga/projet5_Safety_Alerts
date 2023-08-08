@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="Rerun testDeleteFireStation()" project="projet5" tests="1" started="1" failures="0" errors="0" ignored="0">
-  <testsuite name="com.openclassroom.projet5.Controller.FireStationControllerTest" time="0.154" displayname="FireStationControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.openclassroom.projet5.Controller.FireStationControllerTest]">
-    <testcase name="testDeleteFireStation" classname="com.openclassroom.projet5.Controller.FireStationControllerTest" time="0.154" displayname="testDeleteFireStation()" uniqueid="[engine:junit-jupiter]/[class:com.openclassroom.projet5.Controller.FireStationControllerTest]/[method:testDeleteFireStation()]"/>
-  </testsuite>
-</testrun>

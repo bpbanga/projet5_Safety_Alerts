@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move element &apos;maven-status&apos; to &apos;projet5/src/main/java/com.openclassroom.projet5.controller&apos;&#x0D;&#x0A;- Original project: &apos;projet5&apos;&#x0D;&#x0A;- Destination element: &apos;projet5/src/main/java/com.openclassroom.projet5.controller&apos;&#x0D;&#x0A;- Original element: &apos;maven-status&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move folder" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.openclassroom.projet5.controller" element1="target/maven-status" files="0" flags="589830" folders="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1685657914319" units="0" version="1.0"/>
-</session>
